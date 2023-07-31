@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.mvc.form-urlencoded.enabled",
+      "type": "java.lang.String",
+      "description": "Description for spring.mvc.form-urlencoded.enabled."
+  }
+] }
