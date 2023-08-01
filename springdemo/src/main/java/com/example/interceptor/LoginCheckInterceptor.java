@@ -1,34 +1,29 @@
-package com.example.Filter;
+package com.example.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.pojo.Result;
 import com.example.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Slf4j
-//@WebFilter("/path/*")
-public class LoginFilter implements Filter {
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) servletRequest; //对请求进行强转
-        HttpServletResponse rep = (HttpServletResponse) servletResponse;
+@Component
+public class LoginCheckInterceptor implements HandlerInterceptor {
+    @Override  //目标方法执行前执行，返回ture，放行；反之不放行
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse rep, Object handler) throws Exception {
         //        - 获取请求的url
         String url = req.getRequestURI().toString(); //转换成字符串
         log.info("请求的url：{}" , url);
 //                - 判断请求中是否包含login，如果包含，就说明是登录操作，放行
-        if(url.contains("/login")){
+        if(url.contains("login")){
             log.info("登录操作，放行");
-            filterChain.doFilter(servletRequest,servletResponse);
-            return;
+            return true;
         }
 //                - 获取请求头中的令牌(token)
         String jwt = req.getHeader("token");
@@ -38,9 +33,8 @@ public class LoginFilter implements Filter {
             Result error = Result.error("NOT_LOGIN");
             String notLogin =  JSONObject.toJSONString(error);//通过JSON这个方法将json转为string
             rep.getWriter().write(notLogin);
-            return;
+            return false;
         }
-
 //        - 解析token，如果解析失败，返回错误结果（未登录）
         try {
             JwtUtils.parseJWT(jwt);
@@ -50,10 +44,22 @@ public class LoginFilter implements Filter {
             Result error = Result.error("NOT_LOGIN");
             String notLogin =  JSONObject.toJSONString(error);//通过JSON这个方法将string转为json
             rep.getWriter().write(notLogin);
-            return;
+            return false;
         }
 //        - 都成功，放行。
         log.info("登录成功");
-        filterChain.doFilter(servletRequest,servletResponse);
+        return true;
+    }
+
+    @Override  //目标方法执行后执行
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+        System.out.println("postHandle......");
+    }
+
+    @Override  //视图渲染完成后运行，最后运行
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+        System.out.println("afterCompletion......");
     }
 }

@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/path")
 public class UserController {
 
-    @PostMapping(value = "/login/{userId}/{deptId}")
+    @PostMapping(value = "/username")
     public ResponseEntity<String> updateUser(
-            @PathVariable("userId") String userId,
-            @PathVariable("deptId") String deptId,
             @RequestParam("userName") String userName,
             @RequestParam("groupName") String groupName,
             @RequestParam("deptName") String deptName) {
