@@ -53,7 +53,7 @@ public class LoginFilter implements Filter {
             return;
         }
 //        - 都成功，放行。
-        log.info("登录成功");
+        log.info("身份验证成功");
         filterChain.doFilter(servletRequest,servletResponse);
     }
 }

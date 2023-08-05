@@ -1,6 +1,16 @@
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/melon?serverTimezone=UTC
+    username: root
+    password: root
   servlet:
     enabled: true
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+
+#开启驼峰式命名规则自动转换
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

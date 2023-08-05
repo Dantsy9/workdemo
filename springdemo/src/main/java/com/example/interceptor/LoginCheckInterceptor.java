@@ -3,6 +3,7 @@ package com.example.interceptor;
 import com.alibaba.fastjson.JSONObject;
 import com.example.pojo.Result;
 import com.example.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -37,17 +38,19 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         }
 //        - 解析token，如果解析失败，返回错误结果（未登录）
         try {
-            JwtUtils.parseJWT(jwt);
+            Claims claims = JwtUtils.parseJWT(jwt);
+            System.out.println(claims);
         } catch (Exception e) {
             e.printStackTrace();
             log.info("解析令牌失败，返回错误信息");
             Result error = Result.error("NOT_LOGIN");
-            String notLogin =  JSONObject.toJSONString(error);//通过JSON这个方法将string转为json
+            String notLogin =  JSONObject.toJSONString(error);//通过JSON这个方法将json转为String
+            System.out.println(notLogin);
             rep.getWriter().write(notLogin);
             return false;
         }
 //        - 都成功，放行。
-        log.info("登录成功");
+        log.info("身份验证成功");
         return true;
     }
 

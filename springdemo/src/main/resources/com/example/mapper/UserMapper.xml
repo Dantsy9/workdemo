@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+    <select id="selectAll" resultType="com.example.domain.User">
+        select *
+        from User;
+    </select>
+    <select id="selectById" resultType="com.example.domain.User">
+        select *
+        from User
+        where id = #{id};
+    </select>
+    <select id="selectByCondition" resultType="com.example.domain.User">
+<!--        select *-->
+<!--        from User-->
+<!--        where id = #{id}-->
+<!--        and username like %${username}%-->
+        select *
+        from User
+        where 1=1
+        <if test="id != null and id != ' '">
+            and id=#{id}
+        </if>
+        <if test="username != null and username != ' '">
+            and username=#{username}
+        </if>
+        <if test="password != null">
+            and password=#{password}
+        </if>
+        <if test="age != null and age != ' '">
+            and age=#{age}
+        </if>
+        <if test="tel != null">
+            and tel=#{tel}
+        </if>
+    </select>
+
+
+    <!--    useGeneratedKeys="true" keyProperty="id" 添加主键返回-->
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into user (id,username,password,age,tel)
+        value (#{id},#{username},#{password},#{age},#{tel});
+    </insert>
+
+    <update id="update">
+        update user
+        <set>
+            <!--        非空查询-->
+<!--            <if test="id != null and id != ' '">-->
+<!--                id=#{id},-->
+<!--            </if>-->
+            <if test="username != null and username != ' '">
+                username=#{username}
+            </if>
+            <if test="password != null">
+                password=#{password}
+            </if>
+            <if test="age != null and age != ' '">
+                age=#{age}
+            </if>
+            <if test="tel != null">
+                tel=#{tel}
+            </if>
+        </set>
+        where username=#{username};
+    </update>
+
+    <delete id="delById">
+        delete from user
+        where id = #{id};
+    </delete>
+
+    <delete id="delByIds">
+        delete from user
+        where id in
+        (
+        <foreach collection="ids" item="id" separator=",">
+            <!-- collection数组或者集合名 item集合中对应参数-->
+            #{id}
+        </foreach>
+        )
+    </delete>
+</mapper>
