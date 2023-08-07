@@ -49,6 +49,8 @@ class SpringdemoApplicationTests {
 //        userMapper = sqlSession.getMapper(UserMapper.class);
         List<User> users = userMapper.selectAll();
         System.out.println(users);
+        //TODO 断言
+
 
         //释放资源
 //        sqlSession.close();

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Map;
 
 public class JwtUtils {
-
+    //TODO 作为配置作用的常量，用final进行修饰
     private static String signKey = "jwt_key";
     private static Long expire = 43200000L;
 

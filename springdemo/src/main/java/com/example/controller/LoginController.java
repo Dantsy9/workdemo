@@ -25,7 +25,7 @@ public class LoginController {
         log.info("员工登录：{}" , user);
         User u = loginService.login(user);
         if (u != null) {
-
+            //TODO 不能在login方法中返回吗？
             return Result.success(loginService.jwt(u));
         }
         return Result.error("登录失败，用户名或密码错误");

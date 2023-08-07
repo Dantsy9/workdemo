@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-
+//TODO 类注释
 @Slf4j
 @RestController
 public class UserGetInfoController {
@@ -20,7 +20,7 @@ public class UserGetInfoController {
 
     @Resource
     private MenuService menuService;
-
+    //TODO 方法注释
     @PostMapping(value = "/getinfo")
     public Result getInfo() {
         log.info("用户信息获取请求");
@@ -32,4 +32,6 @@ public class UserGetInfoController {
 
         return Result.success(menuList);
     }
+
+    //TODO 分配权限的代码呢？
 }

@@ -22,6 +22,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         String url = req.getRequestURI().toString(); //转换成字符串
         log.info("请求的url：{}" , url);
 //                - 判断请求中是否包含login，如果包含，就说明是登录操作，放行
+        //TODO 拦截器中还需要这个步骤吗？
         if(url.contains("login")){
             log.info("登录操作，放行");
             return true;
@@ -39,6 +40,8 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 //        - 解析token，如果解析失败，返回错误结果（未登录）
         try {
             Claims claims = JwtUtils.parseJWT(jwt);
+
+            //TODO 本地调试结束后，所有system.out代码要删掉
             System.out.println(claims);
         } catch (Exception e) {
             e.printStackTrace();

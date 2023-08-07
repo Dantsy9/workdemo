@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2023-08-03
  */
 
-
+//TODO Mapper 注解是用在这个位置吗?
 @Mapper
 //@Accessors(chain = true)
 public class Menu{
@@ -181,6 +181,7 @@ public class Menu{
         this.delFlag = delFlag;
     }
 
+    //TODO 要重写tostring的话，用stringbuilder
     @Override
     public String toString() {
         return "Menu{" +
@@ -200,6 +201,7 @@ public class Menu{
     }
 
 
+    //TODO 不是数据库表中的字段，不要放在这个实体类中
     private List<Menu> children;
 
     public List<Menu> getChildren() {
