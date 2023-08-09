@@ -1,0 +1,39 @@
+package com.example.mapper;
+
+import com.example.domain.Menu;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import javax.annotation.Resource;
+import java.util.List;
+
+
+@SpringBootTest
+@Slf4j
+class MenuMapperTest {
+
+    @Resource
+    private MenuMapper menuMapper;
+
+    @Test
+    void selectAll() {
+        List<Menu> menus = menuMapper.selectAll();
+        Assertions.assertNotNull(menus);
+    }
+
+    @Test
+    void selectMenuByMenuId() {
+        Long[] ids = new Long[]{1L,2L,3L};
+        List<Menu> result = menuMapper.selectMenuByMenuId(ids);
+        Assertions.assertNotNull(result);
+    }
+
+    @Test
+    void selectMenuNameByMenuId() {
+        Long[] ids = new Long[]{1L,2L,3L};
+        List<Menu> result = menuMapper.selectMenuByMenuId(ids);
+        System.out.println(result);
+        Assertions.assertNotNull(result);
+    }
+}

@@ -19,10 +19,10 @@ public interface UserMenuMapper {
     List<UserMenu> getAllUserPerms();
 
     //批量增加用户权限
-    void addUserPerms(List<UserMenu> userMenus);
+    boolean addUserPerms(List<UserMenu> userMenus);
 
     //批量删除用户权限
-    void delUserPerms(List<UserMenu> userMenus);
+    boolean delUserPerms(List<UserMenu> userMenus);
 
     //批量查询用户是否存在菜单权限
     List<UserMenu> getUserPerms(List<UserMenu> userMenus);

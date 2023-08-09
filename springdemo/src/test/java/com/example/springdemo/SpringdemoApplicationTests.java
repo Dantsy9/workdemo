@@ -25,24 +25,4 @@ import java.util.*;
 @SpringBootTest
 @MapperScan("com.example.mapper")
 class SpringdemoApplicationTests {
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @Resource
-    private UserMenuMapper userMenuMapper;
-
-    @Resource
-    private MenuMapper menuMapper;
-
-
-    @Test
-    void testSelectAll() {
-
-        List<User> users = userMapper.selectAll();
-        assert users != null;
-        //TODO 断言
-    }
-    //全部重写一次
-
 }

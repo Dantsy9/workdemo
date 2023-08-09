@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
-import java.util.Map;
 
 
 @Mapper
@@ -18,17 +17,17 @@ public interface UserMapper{
     Long getTypeIdById(Long id);
 
     //添加数据
-    void add(User user);
+    boolean add(User user);
 
     //更新数据
-    void update(User user);
+    int update(User user);
 
     //删除单个
-    void delById(Long id);
+    boolean delById(Long id);
 
     //批量删除
     //TODO 没有特殊要求的情况下用集合作为出入参
-    void delByIds(@Param("ids")List<User> ids);
+    boolean delByIds(@Param("ids")List<Long> ids);
 
     //查询全部
     List<User> selectAll();
