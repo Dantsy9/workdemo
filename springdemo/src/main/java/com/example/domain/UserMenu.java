@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @author WH
  * @since 2023-08-03
  */
-@Mapper
 public class UserMenu{
 
     private static final long serialVersionUID = 1L;

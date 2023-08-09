@@ -1,10 +1,17 @@
+jasypt:
+  encryptor:
+    password: f5088fe56cb8447aa56fe7db9e3b2444 # salt 盐值，需要和加密时使用的 salt 一致
+    algorithm: PBEWithMD5AndDES # 加密算法，需要和加密时使用的算法一致
+    string-output-type: base64 # 密文格式，，需要和加密时使用的输出格式一致
+
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/melon?serverTimezone=UTC
-    username: root
 #    TODO 给密码进行加密
-    password: root
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/melon?serverTimezone=UTC
+      username: root
+      password: ENC(wq1/SxWGmYPgSS2HuLdUbTjVb4tAZRkN)
   servlet:
     enabled: true
     multipart:
@@ -15,3 +22,6 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+
+

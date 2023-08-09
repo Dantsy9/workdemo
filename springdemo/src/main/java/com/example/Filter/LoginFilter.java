@@ -1,15 +1,12 @@
 package com.example.Filter;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.pojo.Result;
+import com.example.utils.Result;
 import com.example.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

@@ -1,9 +1,5 @@
 package com.example.domain;
 
-
-import lombok.experimental.Accessors;
-import org.apache.ibatis.annotations.Mapper;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,8 +13,6 @@ import java.util.List;
  */
 
 //TODO Mapper 注解是用在这个位置吗?
-@Mapper
-//@Accessors(chain = true)
 public class Menu{
 
     private static final long serialVersionUID = 1L;
@@ -40,25 +34,7 @@ public class Menu{
      */
     private Long parentId;
 
-    /**
-     * 显示顺序
-     */
-    private Integer orderNum;
 
-    /**
-     * 菜单类型（C菜单 F按钮）
-     */
-    private String menuType;
-
-    /**
-     * 菜单状态（0显示 1隐藏）
-     */
-    private String visible;
-
-    /**
-     * 菜单状态（0正常 1停用）
-     */
-    private String status;
 
     /**
      * 创建人的用户id
@@ -81,7 +57,7 @@ public class Menu{
     private LocalDateTime updateTime;
 
     /**
-     * 删除标志（0代表未删除，1代表已删除）
+     * 删除标志（0 代表未删除，1 代表已删除）
      */
     private Integer delFlag;
 
@@ -109,37 +85,6 @@ public class Menu{
         this.parentId = parentId;
     }
 
-    public Integer getOrderNum() {
-        return orderNum;
-    }
-
-    public void setOrderNum(Integer orderNum) {
-        this.orderNum = orderNum;
-    }
-
-    public String getMenuType() {
-        return menuType;
-    }
-
-    public void setMenuType(String menuType) {
-        this.menuType = menuType;
-    }
-
-    public String getVisible() {
-        return visible;
-    }
-
-    public void setVisible(String visible) {
-        this.visible = visible;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Long getCreateBy() {
         return createBy;
@@ -182,33 +127,23 @@ public class Menu{
     }
 
     //TODO 要重写tostring的话，用stringbuilder
+
     @Override
     public String toString() {
-        return "Menu{" +
-            "id = " + id +
-            ", menuName = " + menuName +
-            ", parentId = " + parentId +
-            ", orderNum = " + orderNum +
-            ", menuType = " + menuType +
-            ", visible = " + visible +
-            ", status = " + status +
-            ", createBy = " + createBy +
-            ", createTime = " + createTime +
-            ", updateBy = " + updateBy +
-            ", updateTime = " + updateTime +
-            ", delFlag = " + delFlag +
-        "}";
+        final StringBuilder sb = new StringBuilder("Menu{");
+        sb.append("id=").append(id);
+        sb.append(", menuName='").append(menuName).append('\'');
+        sb.append(", parentId=").append(parentId);
+        sb.append(", createBy=").append(createBy);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateBy=").append(updateBy);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", delFlag=").append(delFlag);
+        sb.append('}');
+        return sb.toString();
     }
 
 
     //TODO 不是数据库表中的字段，不要放在这个实体类中
-    private List<Menu> children;
 
-    public List<Menu> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Menu> children) {
-        this.children = children;
-    }
 }

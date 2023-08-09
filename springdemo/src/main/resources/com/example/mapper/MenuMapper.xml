@@ -18,4 +18,11 @@
         </foreach>
         )
     </select>
+
+    <select id="selectMenuNameByMenuId" resultType="com.example.domain.Menu">
+        select id,menu_name
+        from menu
+        where
+        id = #{id}
+    </select>
 </mapper>

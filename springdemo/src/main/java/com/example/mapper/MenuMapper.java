@@ -7,7 +7,10 @@ import java.util.List;
 
 @Mapper
 public interface MenuMapper {
-    List<Menu> selectAll();//展示全部菜单
+    //展示全部菜单
+    List<Menu> selectAll();
+    //按照menuId展示
+    List<Menu> selectMenuByMenuId(Long[] menuId);
 
-    List<Menu> selectMenuByMenuId(Long[] menuId);//按照menuid展示
+    List<Menu> selectMenuNameByMenuId(Long[] menuId);
 }

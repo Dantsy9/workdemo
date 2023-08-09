@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
  * @since 2023-08-03
  */
 
-@Mapper
 public class User{
 
     private static final long serialVersionUID = 1L;
@@ -90,7 +89,7 @@ public class User{
     private LocalDateTime updateTime;
 
     /**
-     * 删除标志（0代表未删除，1代表已删除）
+     * 删除标志（0 代表未删除，1 代表已删除）
      */
     private Integer delFlag;
 

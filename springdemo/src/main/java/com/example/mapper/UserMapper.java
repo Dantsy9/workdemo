@@ -13,6 +13,10 @@ import java.util.Map;
 
 @Mapper
 public interface UserMapper{
+    //通过userid查询用户权限typeId
+    @Select("select type from user where id = #{id}")
+    Long getTypeIdById(Long id);
+
     //添加数据
     void add(User user);
 
@@ -24,7 +28,7 @@ public interface UserMapper{
 
     //批量删除
     //TODO 没有特殊要求的情况下用集合作为出入参
-    void delByIds(@Param("ids")Long[] ids);
+    void delByIds(@Param("ids")List<User> ids);
 
     //查询全部
     List<User> selectAll();
@@ -35,12 +39,12 @@ public interface UserMapper{
 
     /**
      * 多条件查询
-     * @param map
+     * @param user
      * @return
      */
     //TODO 避免用Map作为参数
-    List<User> selectByCondition(Map map);
-    //List<User> selectByCondition(@Param("id")int id , @Param("tel")String tel , @Param("age")int age);
+    List<User> selectByCondition(User user);
+//    List<User> selectByCondition(@Param("id")Long id , @Param("tel")String username , @Param("age")int age);
 
 
     //用户名密码匹配
