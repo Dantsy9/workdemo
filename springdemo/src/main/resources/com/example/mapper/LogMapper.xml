@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.LogMapper">
+    <insert id="insertInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into log (operator,method,object,consequence)
+            value (#{operator},#{method},#{object},#{consequence});
+    </insert>
+</mapper>

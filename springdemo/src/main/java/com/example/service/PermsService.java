@@ -49,5 +49,5 @@ public interface PermsService {
      * @param: List数组对象用户菜单关联表
      * @return: 查询结果的List
      **/
-    List<UserMenu> getUserMenu(List<UserMenu> userMenus);
+    List<UserMenu> getUserMenuByUserMenu(List<UserMenu> userMenus);
 }

@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 
-@Mapper
+
 public interface UserMapper{
     //通过userid查询用户权限typeId
     @Select("select type from user where id = #{id}")

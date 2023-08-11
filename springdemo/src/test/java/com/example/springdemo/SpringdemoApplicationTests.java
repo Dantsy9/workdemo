@@ -1,7 +1,9 @@
 package com.example.springdemo;
 
+import com.example.domain.Log;
 import com.example.domain.Menu;
 import com.example.domain.User;
+import com.example.mapper.LogMapper;
 import com.example.mapper.MenuMapper;
 import com.example.mapper.UserMapper;
 import com.example.mapper.UserMenuMapper;
@@ -23,6 +25,6 @@ import java.util.*;
 
 
 @SpringBootTest
-@MapperScan("com.example.mapper")
 class SpringdemoApplicationTests {
+
 }

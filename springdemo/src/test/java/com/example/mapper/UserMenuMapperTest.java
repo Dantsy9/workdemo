@@ -45,8 +45,8 @@ class UserMenuMapperTest {
         List<UserMenu> userMenus = new ArrayList<>();
         userMenus.add(userMenu1);
         userMenus.add(userMenu2);
-        boolean result = userMenuMapper.addUserPerms(userMenus);
-        Assertions.assertTrue(result);
+        int result = userMenuMapper.addUserPerms(userMenus);
+        Assertions.assertEquals(1,result);
     }
 
     @Test
@@ -61,12 +61,12 @@ class UserMenuMapperTest {
         List<UserMenu> userMenus = new ArrayList<>();
         userMenus.add(userMenu1);
         userMenus.add(userMenu2);
-        boolean result = userMenuMapper.delUserPerms(userMenus);
-        Assertions.assertFalse(result);
+        int result = userMenuMapper.delUserPerms(userMenus);
+        Assertions.assertEquals(0,result);
     }
 
     @Test
-    void getUserPerms() {
+    void getUserPermsByUserMenu() {
         UserMenu userMenu1 = new UserMenu();
         UserMenu userMenu2 = new UserMenu();
         userMenu1.setUserId(2L);
@@ -76,7 +76,7 @@ class UserMenuMapperTest {
         List<UserMenu> userMenus = new ArrayList<>();
         userMenus.add(userMenu1);
         userMenus.add(userMenu2);
-        List<UserMenu> result = userMenuMapper.getUserPerms(userMenus);
+        List<UserMenu> result = userMenuMapper.getUserPermsByUserMenu(userMenus);
         assert result.isEmpty();
     }
 }

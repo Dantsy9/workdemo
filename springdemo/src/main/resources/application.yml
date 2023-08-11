@@ -13,7 +13,6 @@ spring:
       username: root
       password: ENC(wq1/SxWGmYPgSS2HuLdUbTjVb4tAZRkN)
   servlet:
-    enabled: true
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
@@ -24,4 +23,18 @@ mybatis:
     map-underscore-to-camel-case: true
 
 
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰式命名规则自动转换
+    jdbc-type-for-null: "null"
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+# 日志配置
+logging:
+  level:
+    root: info
+    # 事务日志
+    org.springframework.transaction: debug
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+    # 项目日志路径
+    com.example: debug

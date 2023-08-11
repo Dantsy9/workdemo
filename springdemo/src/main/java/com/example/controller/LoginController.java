@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.annn.Log;
 import com.example.domain.User;
 import com.example.domain.UserMenu;
 import com.example.utils.Result;
@@ -54,6 +55,7 @@ public class LoginController {
      * @return: 成功信息
      **/
     @PostMapping("/addPerms")
+//    @Log
     public Result addPerms(@RequestBody List<UserMenu> userMenus){
         log.info("用户权限变更，增加用户权限");
         String resultInfo = permsService.addPerms(userMenus);
@@ -70,6 +72,7 @@ public class LoginController {
      * @return: 成功信息
      **/
     @DeleteMapping("/delPerms")
+//    @Log
     public Result delPerms(@RequestBody List<UserMenu> userMenus){
         log.info("用户权限变更，删除用户权限");
         String resultInfo = permsService.delPerms(userMenus);
@@ -79,22 +82,4 @@ public class LoginController {
         return Result.success(resultInfo);
     }
 
-
-
-    /**
-     * 查询用户是否存在或用户是否拥有目标权限
-     * @date: 2023/8/8
-     * @param: List数组对象用户菜单关联表
-     * @return: 查询结果
-     **/
-//    @PostMapping("/selectPerms")
-//    public Result selectPerms(@RequestBody List<UserMenu> userMenus){
-//        log.info("查询用户是否存在权限");
-//        List<UserMenu> userMenus1 = permsService.getUserMenu(userMenus);
-//        if(userMenus1.isEmpty()){
-//            return Result.error("查询失败！请确认用户是否存在或用户是否拥有目标权限");
-//        }
-//        return Result.success(userMenus1);
-//    }
-//
 }
