@@ -86,7 +86,7 @@ public class PermsServiceImpl implements PermsService {
             String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
             //如果没有捕获到异常，则方法执行成功
             if (Objects.equals(exception, "")){
-                exception = methodName +  " , success";
+                exception = methodName +  " ,method executed successfully";
             }
             //日志记录
             iAddlogService.saveAddLog(userMenus, methodName, exception);
