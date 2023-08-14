@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface UserMenuMapper {
 
-    //通过用户id查询对应展示的menuid，其中，如果用户为管理员则menuid=0，默认展示全部菜单id
+    //通过用户id查询对应展示的menuid，其中，如果menuid=0，默认展示全部菜单id
     @Select("select menu_id from user_menu where user_id = #{user_id}")
     Long[] getMenuIdByUserId(Long userId);
 

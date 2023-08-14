@@ -1,5 +1,6 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 
 import java.util.List;
@@ -12,16 +13,19 @@ import java.util.List;
  * @author zmc
  * @since 2023-08-07
  */
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MenuDTO extends Menu{
     //TODO
+
+    //菜单ID
     private Long id;
 
+    //菜单名称
     private String menuName;
-
+    //父级菜单Id
     private Long parentId;
 
-
+    //子菜单列表
     @Getter
     private List<MenuDTO> childrenList;
 

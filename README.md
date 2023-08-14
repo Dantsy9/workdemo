@@ -29,3 +29,10 @@
   - 增加了AOP方法LogAspect（未使用）
   - IAddLogServiceImpl获取方法状态并传输到数据库存储
   - 在PermsSericeImpl的AddPerms方法增加了try...catch...finally...并在其中捕获方法异常类型和方法运行结果传回AddLog表中
+
+- 2023年8月14日
+  - 修改了AddLogServiceImpl的方法saveAddLog的入参
+  - 修改MenuServiceImpl中getMenuTreeByUserId方法中获取全部菜单条件
+  - 修改了MenuServiceImpl中findChildMenu方法更名为setChildMenu
+  - 修改了PermsServiceImpl中addPerms方法的返回数据格式为Result
+  - 注释了PermsServiceImpl中getExceptionMessage方法

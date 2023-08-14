@@ -57,11 +57,7 @@ public class LoginController {
 //    @Log
     public Result addPerms(@RequestBody List<UserMenu> userMenus){
         log.info("用户权限变更，增加用户权限");
-        String resultInfo = permsService.addPerms(userMenus);
-        if (resultInfo == null){
-            return Result.error("失败，用户已存在部分权限");
-        }
-        return Result.success(resultInfo);
+        return permsService.addPerms(userMenus);
     }
 
     /**

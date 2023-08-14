@@ -4,6 +4,7 @@ package com.example.service;
 import com.example.domain.Menu;
 import com.example.domain.User;
 import com.example.domain.UserMenu;
+import com.example.utils.Result;
 
 import java.util.List;
 import java.util.ListIterator;
@@ -32,7 +33,7 @@ public interface PermsService {
      * @param: List数组对象用户菜单关联表
      * @return: void
      **/
-    String addPerms(List<UserMenu> userMenus);
+    Result addPerms(List<UserMenu> userMenus);
 
 
     /**

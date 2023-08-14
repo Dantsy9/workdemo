@@ -42,20 +42,18 @@ public class AddlogServiceImpl extends ServiceImpl<AddlogMapper, Addlog> impleme
     //TODO 日志记录作为一个通用方法，参数不应该跟具体业务进行有关联（userMenu）
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void saveAddLog(List<UserMenu> userMenu, String method, String consequence) {
+    public void saveAddLog(String MethodObject, String method, String consequence) {
         //解析token获取当前用户
         String token = request.getHeader("token");
         Claims claims = JwtUtils.parseJWT(token);
         //TODO　强转
-        String operator = (String) claims.get("username");
-
-        String object = userMenu.toString();
+        String operator = claims.get("username",String.class);
         Addlog addlog = new Addlog();
         addlog.setOperator(operator);
         //获取当前时间
         addlog.setOperationTime(LocalDateTime.now());
         addlog.setMethod(method);
-        addlog.setObject(object);
+        addlog.setObject(MethodObject);
         addlog.setConsequence(consequence);
 
         addlogMapper.insert(addlog);

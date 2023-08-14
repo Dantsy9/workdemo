@@ -22,5 +22,5 @@ public interface IAddlogService extends IService<Addlog> {
      * @param: 用户菜单关联表
      * @return:
      **/
-    void saveAddLog(List<UserMenu> userMenu, String method, String consequence);
+    void saveAddLog(String MethodObject, String method, String consequence);
 }

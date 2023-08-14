@@ -39,12 +39,14 @@ public class UserMenu{
     public void setMenuId(Long menuId) {
         this.menuId = menuId;
     }
-    //TODO
+    //TODO StringBuild
+
     @Override
     public String toString() {
-        return "UserMenu{" +
-            "userId = " + userId +
-            ", menuId = " + menuId +
-        "}";
+        final StringBuilder sb = new StringBuilder("UserMenu{");
+        sb.append("userId=").append(userId);
+        sb.append(", menuId=").append(menuId);
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -38,3 +38,4 @@ logging:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
     # 项目日志路径
     com.example: debug
+

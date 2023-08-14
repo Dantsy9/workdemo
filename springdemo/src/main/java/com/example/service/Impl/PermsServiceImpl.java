@@ -7,6 +7,7 @@ import com.example.mapper.UserMenuMapper;
 import com.example.service.IAddlogService;
 import com.example.service.PermsService;
 import com.example.utils.JwtUtils;
+import com.example.utils.Result;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,13 +36,6 @@ public class PermsServiceImpl implements PermsService {
 
 
     /**
-     * 查询用户的权限typeId
-     * @date: 2023/8/8
-     * @param: []
-     * @return: typeId
-     **/
-
-
     /**
      * 查询所有用户菜单关联表
      * @date: 2023/8/8
@@ -63,38 +57,36 @@ public class PermsServiceImpl implements PermsService {
      **/
     @Override
     @Transactional(rollbackFor = Exception.class)//开启事务
-    public String addPerms(List<UserMenu> userMenus) {
+    public Result addPerms(List<UserMenu> userMenus) {
         //先用传进来的数据和表的数据做对比，查看是否存在
-        List<UserMenu> userMenus1 = getUserMenuByUserMenu(userMenus);
-        String exception = "";
+        List<UserMenu> selectUserIdAndMenuId = getUserMenuByUserMenu(userMenus);
+
+        String exception = "addPerms , method executed successfully";
+
         try {
             //如果有查询到有相同的数据，则返回错误信息
             //TODO 为什么返回错误信息？
-            if (!userMenus1.isEmpty()) {
-                return null;
+            if (!selectUserIdAndMenuId.isEmpty()) {
+                return Result.error("以下用户权限已存在",selectUserIdAndMenuId);
             }
             //否则上传数据
             userMenuMapper.addUserPerms(userMenus);
 //            int i = 1 / 0;
-
+            //如果没有捕获到异常，则方法执行成功
         } catch (Exception e) {
             //获取错误信息
-            exception = "Failed, check the exception information :" + getExceptionMessage(e);
+            exception = "Failed, check the exception information :" + e.getMessage();
             e.printStackTrace();
             throw new RuntimeException();
         } finally {//执行log记录
-            //获得当前执行的方法名
+
             //TODO 为什么要这样获取方法名
-            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-            //如果没有捕获到异常，则方法执行成功
+
             //TODO 为什么写在这个位置？
-            if (Objects.equals(exception, "")){
-                exception = methodName +  " ,method executed successfully";
-            }
             //日志记录
-            iAddlogService.saveAddLog(userMenus, methodName, exception);
+            iAddlogService.saveAddLog(userMenus.toString(), "addPerms", exception);
         }
-        return "添加成功！";
+        return Result.success(userMenus);
     }
 
 
@@ -105,9 +97,9 @@ public class PermsServiceImpl implements PermsService {
      * @return: 异常类型的String字符串
      **/
     //TODO 这个代码封装的目的是什么？
-    public static String getExceptionMessage(Exception e) {
-        return e.getMessage();
-    }
+//    public static String getExceptionMessage(Exception e) {
+//        return e.getMessage();
+//    }
 
 
         /**

@@ -13,13 +13,10 @@
         where id = #{id};
     </select>
     <select id="selectByCondition" resultType="com.example.domain.User">
-<!--        select *-->
-<!--        from User-->
-<!--        where id = #{id}-->
-<!--        and username like %${username}%-->
         select *
         from User
-<!--  TODO 为什么加这个条件      -->
+        <!--  TODO 为什么加这个条件      -->
+        <!--  自定义条件查询，如果查询的时候没有输入id，where and 语句会报错，加上1=1就不会了，然后也需要在id=#{id}前面加上and  -->
         where 1=1
         <if test="id != null and id != ' '">
             and id=#{id}
@@ -49,9 +46,9 @@
         update user
         <set>
             <!--        非空查询-->
-<!--            <if test="id != null and id != ' '">-->
-<!--                id=#{id},-->
-<!--            </if>-->
+            <!--            <if test="id != null and id != ' '">-->
+            <!--                id=#{id},-->
+            <!--            </if>-->
             <if test="username != null and username != ' '">
                 username=#{username}
             </if>
