@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-//TODO 类注释
+// 类注释
 
 
 /**
@@ -31,7 +31,7 @@ public class UserGetInfoController {
 
     @Resource
     private MenuService menuService;
-    //TODO 方法注释
+    // 方法注释
     /**
      *
      * @date: 2023/8/7
@@ -47,6 +47,4 @@ public class UserGetInfoController {
 //        return Result.success(menuList);
     }
 
-    //TODO 分配权限的代码呢？
-    //更改到Logincontroller
 }

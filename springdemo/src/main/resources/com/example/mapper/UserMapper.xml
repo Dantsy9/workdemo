@@ -19,6 +19,7 @@
 <!--        and username like %${username}%-->
         select *
         from User
+<!--  TODO 为什么加这个条件      -->
         where 1=1
         <if test="id != null and id != ' '">
             and id=#{id}

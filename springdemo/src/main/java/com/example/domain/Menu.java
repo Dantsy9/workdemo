@@ -12,7 +12,6 @@ import java.util.List;
  * @since 2023-08-03
  */
 
-//TODO Mapper 注解是用在这个位置吗?
 public class Menu{
 
     private static final long serialVersionUID = 1L;
@@ -126,7 +125,7 @@ public class Menu{
         this.delFlag = delFlag;
     }
 
-    //TODO 要重写tostring的话，用stringbuilder
+    // 要重写tostring的话，用stringbuilder
 
     @Override
     public String toString() {
@@ -144,6 +143,5 @@ public class Menu{
     }
 
 
-    //TODO 不是数据库表中的字段，不要放在这个实体类中
 
 }

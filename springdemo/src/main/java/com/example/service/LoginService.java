@@ -10,7 +10,7 @@ import com.example.domain.User;
  * @since 2023/8/7
  */
 public interface LoginService {
-    //TODO 用文档注释 不用行注释，行注释使用时要写在代码上方
+    // 用文档注释 不用行注释，行注释使用时要写在代码上方
     /**
      * 验证用户名和密码，验证成功返回token
      * @date: 2023/8/9

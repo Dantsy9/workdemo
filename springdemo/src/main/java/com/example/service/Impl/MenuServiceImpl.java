@@ -37,6 +37,7 @@ public class MenuServiceImpl implements MenuService {
         Long typeId = userMapper.getTypeIdById(userId);
         List<Menu> menus;
         if(typeId == 0){
+            //TODO 确认好需求后在决定要不要写，做好沟通
             //如果type为0，则为管理员，展示全部菜单
             menus = menuMapper.selectAll();
         }else{
@@ -64,6 +65,7 @@ public class MenuServiceImpl implements MenuService {
         for (MenuDTO menuDTO1 : menuDTOS) {
             if(menuDTO1.getParentId().equals(0L)){
                 //找到根节点菜单的时候，寻找这个根节点菜单下的子节点菜单。
+                //TODO 方法名和方法做的事情不一致
                 findChildMenu(menuDTO1,menuDTOS);
                 //添加到根节点的列表中
                 parentMenu.add(menuDTO1);
@@ -71,6 +73,7 @@ public class MenuServiceImpl implements MenuService {
         }
         return parentMenu;
     }
+
     /**
      * 查找并创建子菜单
      * @date: 2023/8/8

@@ -69,6 +69,7 @@ public class PermsServiceImpl implements PermsService {
         String exception = "";
         try {
             //如果有查询到有相同的数据，则返回错误信息
+            //TODO 为什么返回错误信息？
             if (!userMenus1.isEmpty()) {
                 return null;
             }
@@ -83,8 +84,10 @@ public class PermsServiceImpl implements PermsService {
             throw new RuntimeException();
         } finally {//执行log记录
             //获得当前执行的方法名
+            //TODO 为什么要这样获取方法名
             String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
             //如果没有捕获到异常，则方法执行成功
+            //TODO 为什么写在这个位置？
             if (Objects.equals(exception, "")){
                 exception = methodName +  " ,method executed successfully";
             }
@@ -101,6 +104,7 @@ public class PermsServiceImpl implements PermsService {
      * @param: 异常类型
      * @return: 异常类型的String字符串
      **/
+    //TODO 这个代码封装的目的是什么？
     public static String getExceptionMessage(Exception e) {
         return e.getMessage();
     }

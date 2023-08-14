@@ -36,15 +36,17 @@ public class AddlogServiceImpl extends ServiceImpl<AddlogMapper, Addlog> impleme
     /**
      * 捕获日志上传至表AddLog
      * @date: 2023/8/11
-     * @param: addPerms请求的list数组对象用户角色关联表，方法名，执行结果
+     * @param: addPerms请求的list数组对象用户角色关联表，方法名，执行结果　
      * @return:
      **/
+    //TODO 日志记录作为一个通用方法，参数不应该跟具体业务进行有关联（userMenu）
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveAddLog(List<UserMenu> userMenu, String method, String consequence) {
         //解析token获取当前用户
         String token = request.getHeader("token");
         Claims claims = JwtUtils.parseJWT(token);
+        //TODO　强转
         String operator = (String) claims.get("username");
 
         String object = userMenu.toString();

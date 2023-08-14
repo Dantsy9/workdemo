@@ -26,7 +26,7 @@ public interface UserMapper{
     boolean delById(Long id);
 
     //批量删除
-    //TODO 没有特殊要求的情况下用集合作为出入参
+    // 没有特殊要求的情况下用集合作为出入参
     boolean delByIds(@Param("ids")List<Long> ids);
 
     //查询全部
@@ -41,7 +41,7 @@ public interface UserMapper{
      * @param user
      * @return
      */
-    //TODO 避免用Map作为参数
+    // 避免用Map作为参数
     List<User> selectByCondition(User user);
 //    List<User> selectByCondition(@Param("id")Long id , @Param("tel")String username , @Param("age")int age);
 
