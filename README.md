@@ -21,4 +21,11 @@
   - PermsSericeImpl获取token并解析出typeId
   - MenuServiceImpl获取typeid，匹配UserMenu表，并返回用户权限的菜单目录
 
-
+- 2023年8月12日
+  - 增加了实体类Log，Addlog以及对应的Mapper
+  - 增加了实体类MenuDTO获取存储子菜单并传回Menu根节点（需改进）
+  - 增加了接口ILogService，IAddlogSerice和对应的Impl
+  - 增加了自定义接口@Log（未使用）
+  - 增加了AOP方法LogAspect（未使用）
+  - IAddLogServiceImpl获取方法状态并传输到数据库存储
+  - 在PermsSericeImpl的AddPerms方法增加了try...catch...finally...并在其中捕获方法异常类型和方法运行结果传回AddLog表中
