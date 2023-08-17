@@ -36,3 +36,6 @@
   - 修改了MenuServiceImpl中findChildMenu方法更名为setChildMenu
   - 修改了PermsServiceImpl中addPerms方法的返回数据格式为Result
   - 注释了PermsServiceImpl中getExceptionMessage方法
+
+- 2023年8月17日
+  - 上传了JavaPractice，java基础练习
