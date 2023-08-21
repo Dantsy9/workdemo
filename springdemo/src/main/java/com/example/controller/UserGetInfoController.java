@@ -1,7 +1,9 @@
 package com.example.controller;
 
-import com.example.domain.Menu;
+import com.example.domain.MenuDTO;
 import com.example.domain.UserMenu;
+import com.example.exception.DefinitionException;
+import com.example.exception.ErrorEnum;
 import com.example.utils.Result;
 import com.example.service.MenuService;
 import com.example.service.PermsService;
@@ -41,7 +43,11 @@ public class UserGetInfoController {
     @PostMapping(value = "/getInfo")
     public Result getInfo(@RequestBody UserMenu id) {
         log.info("用户菜单信息获取请求");
-        return menuService.getMenuTreeByUserId(id);
+        List<MenuDTO> menuTreeByUserId = menuService.getMenuTreeByUserId(id);
+        if (menuTreeByUserId == null){
+            throw new DefinitionException(ErrorEnum.USER_PERMS_NOT_EXIST);
+        }
+        return Result.success(menuTreeByUserId);
         //获取菜单列表
 //        List<Menu> menuList = menuService.selectMenuTreeByUserId(userId);
 //        return Result.success(menuList);

@@ -30,14 +30,17 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public Result getMenuTreeByUserId(UserMenu id) {
+    public  List<MenuDTO> getMenuTreeByUserId(UserMenu id) {
         //获取用户user_id
         Long userId = id.getUserId();
         Long[] menuId = userMenuMapper.getMenuIdByUserId(userId);
+        if (menuId.length==0){
+            return null;
+        }
         Long menuIdSpecial = 0L;
         boolean isMenuIdSpecial = false;
         //遍历menu数组，查找menuId是否为0，是则展示全部菜单
-        for(Long number  : menuId){
+        for(Long number : menuId){
             if (Objects.equals(number, menuIdSpecial)){
                 isMenuIdSpecial = true;
                 break;
@@ -51,7 +54,7 @@ public class MenuServiceImpl implements MenuService {
             //通过menuId获取对应菜单
             menus = menuMapper.selectMenuByMenuId(menuId);
         }
-        return Result.success(getMenuList(menus));
+        return getMenuList(menus);
     }
 
     /**

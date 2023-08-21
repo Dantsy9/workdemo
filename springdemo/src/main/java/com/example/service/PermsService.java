@@ -33,7 +33,7 @@ public interface PermsService {
      * @param: List数组对象用户菜单关联表
      * @return: void
      **/
-    Result addPerms(List<UserMenu> userMenus);
+    Boolean addPerms(List<UserMenu> userMenus);
 
 
     /**

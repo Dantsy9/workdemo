@@ -14,7 +14,7 @@ import javax.sql.DataSource;
  * </p>
  *
  * @author zmc
- * @Since 2023-08-10
+ * @since 2023-08-10
  */
 
 public class Configuration {

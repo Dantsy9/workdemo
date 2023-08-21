@@ -1,8 +1,11 @@
 package com.example.service;
 
 
+import com.example.domain.MenuDTO;
 import com.example.domain.UserMenu;
 import com.example.utils.Result;
+
+import java.util.List;
 
 /**
  * <p>
@@ -18,7 +21,7 @@ public interface MenuService {
      * @param: user_id
      * @return: 菜单树
      **/
-    Result getMenuTreeByUserId(UserMenu id);
+    List<MenuDTO> getMenuTreeByUserId(UserMenu id);
 
 
 

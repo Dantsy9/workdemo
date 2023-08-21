@@ -2,6 +2,8 @@ package com.example.service.Impl;
 
 import com.example.annn.Log;
 import com.example.domain.UserMenu;
+import com.example.exception.DefinitionException;
+import com.example.exception.ErrorEnum;
 import com.example.mapper.MenuMapper;
 import com.example.mapper.UserMenuMapper;
 import com.example.service.IAddlogService;
@@ -57,18 +59,18 @@ public class PermsServiceImpl implements PermsService {
      **/
     @Override
     @Transactional(rollbackFor = Exception.class)//开启事务
-    public Result addPerms(List<UserMenu> userMenus) {
+    public Boolean addPerms(List<UserMenu> userMenus) {
         //先用传进来的数据和表的数据做对比，查看是否存在
         List<UserMenu> selectUserIdAndMenuId = getUserMenuByUserMenu(userMenus);
 
         String exception = "addPerms , method executed successfully";
 
+        //如果有查询到有相同的数据，则返回错误信息
+        if (!selectUserIdAndMenuId.isEmpty()) {
+            return false;
+        }
         try {
-            //如果有查询到有相同的数据，则返回错误信息
             //TODO 为什么返回错误信息？
-            if (!selectUserIdAndMenuId.isEmpty()) {
-                return Result.error("以下用户权限已存在",selectUserIdAndMenuId);
-            }
             //否则上传数据
             userMenuMapper.addUserPerms(userMenus);
 //            int i = 1 / 0;
@@ -86,7 +88,7 @@ public class PermsServiceImpl implements PermsService {
             //日志记录
             iAddlogService.saveAddLog(userMenus.toString(), "addPerms", exception);
         }
-        return Result.success(userMenus);
+        return true;
     }
 
 

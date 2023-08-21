@@ -3,6 +3,8 @@ package com.example.controller;
 import com.example.annn.Log;
 import com.example.domain.User;
 import com.example.domain.UserMenu;
+import com.example.exception.DefinitionException;
+import com.example.exception.ErrorEnum;
 import com.example.utils.Result;
 import com.example.service.LoginService;
 import com.example.service.PermsService;
@@ -38,12 +40,12 @@ public class LoginController {
      **/
     @PostMapping("/login")
     public Result login(@RequestBody User user){
-        log.info("员工登录：{}" , user);
+        log.info("用户登录：{}" , user);
         String u = loginService.login(user);
-        if (u != null) {
-            return Result.success(u);
+        if (u == null) {
+            throw new DefinitionException(ErrorEnum.USER_NOT_MATCH);
         }
-        return Result.error("登录失败，用户名或密码错误");
+        return Result.success(u);
     }
 
 
@@ -57,7 +59,11 @@ public class LoginController {
 //    @Log
     public Result addPerms(@RequestBody List<UserMenu> userMenus){
         log.info("用户权限变更，增加用户权限");
-        return permsService.addPerms(userMenus);
+        Boolean result = permsService.addPerms(userMenus);
+        if (!result){
+            throw new DefinitionException(ErrorEnum.USER_PERMS_EXIST);
+        }
+        return Result.success();
     }
 
     /**
@@ -72,7 +78,7 @@ public class LoginController {
         log.info("用户权限变更，删除用户权限");
         String resultInfo = permsService.delPerms(userMenus);
         if (resultInfo == null){
-            return Result.error("失败，用户不存在对应权限");
+            throw new DefinitionException(ErrorEnum.USER_PERMS_NOT_EXIST);
         }
         return Result.success(resultInfo);
     }

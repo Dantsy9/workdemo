@@ -39,3 +39,21 @@
 
 - 2023年8月17日
   - 上传了JavaPractice，java基础练习
+
+- 2023年8月21日
+
+  - 增加了包exception
+
+  - 在包exception下增加了自定义异常枚举类ErrorEnum，自定义异常处理类DefinitionException
+
+  - 在配置包config下增加了全局异常处理器GlobalExceptionHandle
+
+  - 增加了实体类Fileslog和对应的mapper，service和serviceimpl
+
+  - 在IFileslogService下创建方法saveFilesLog，记录文件的信息，并在FileslogServiceImpl实现
+
+  - 在control包下创建了filecontroler，新增用户文件上传下载功能
+
+  - 增加FileService接口，增加FileServiceImpl实现用户文件上传下载功能，并在Fileslog中记录文件信息
+
+    

@@ -1,3 +1,5 @@
+
+
 jasypt:
   encryptor:
     password: f5088fe56cb8447aa56fe7db9e3b2444 # salt 盐值，需要和加密时使用的 salt 一致
@@ -15,7 +17,8 @@ spring:
   servlet:
     multipart:
       max-file-size: 100MB
-      max-request-size: 100MB
+      max-request-size: 1000MB
+      enabled: true
 
 #开启驼峰式命名规则自动转换
 mybatis:
