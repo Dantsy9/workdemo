@@ -28,6 +28,7 @@ public class ForthThread extends Thread{
             if (counter == 5){
                 MySecondThread t2 = new MySecondThread();
                 t2.setName("Second Thread");
+                //TODO 线程二中若是不用死循环，怎么实现
                 t2.start();
             }
         }

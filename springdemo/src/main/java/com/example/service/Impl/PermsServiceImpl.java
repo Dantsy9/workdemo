@@ -70,7 +70,6 @@ public class PermsServiceImpl implements PermsService {
             return false;
         }
         try {
-            //TODO 为什么返回错误信息？
             //否则上传数据
             userMenuMapper.addUserPerms(userMenus);
 //            int i = 1 / 0;
@@ -82,9 +81,7 @@ public class PermsServiceImpl implements PermsService {
             throw new RuntimeException();
         } finally {//执行log记录
 
-            //TODO 为什么要这样获取方法名
 
-            //TODO 为什么写在这个位置？
             //日志记录
             iAddlogService.saveAddLog(userMenus.toString(), "addPerms", exception);
         }
@@ -98,7 +95,7 @@ public class PermsServiceImpl implements PermsService {
      * @param: 异常类型
      * @return: 异常类型的String字符串
      **/
-    //TODO 这个代码封装的目的是什么？
+    // 这个代码封装的目的是什么？
 //    public static String getExceptionMessage(Exception e) {
 //        return e.getMessage();
 //    }

@@ -2,11 +2,14 @@ import java.util.Scanner;
 
 public class Calculator {
     public static void main(String[] args) {
+        //TODO 没结束前可以一直
         double numberOne;
         double numberTwo;
         double result = 0;
+        //TODO 需要创建三个实例吗？
         Scanner read1 = new Scanner(System.in);
         System.out.println("请输入第一个数：");
+        //TODO 异常处理
         numberOne = read1.nextDouble();
         Scanner read2 = new Scanner(System.in);
         System.out.println("请输入第二个数字");
@@ -26,9 +29,11 @@ public class Calculator {
             case '*':
                 result = numberOne * numberTwo;
                 break;
+                //TODO
             case '/':
                 result = numberOne / numberTwo;
                 break;
+                //TODO 有这个需求吗
             case '%':
                 result = numberOne % numberTwo;
                 break;

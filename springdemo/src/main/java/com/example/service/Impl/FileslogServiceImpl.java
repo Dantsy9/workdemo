@@ -38,6 +38,7 @@ public class FileslogServiceImpl extends ServiceImpl<FileslogMapper, Fileslog> i
      **/
     @Override
     public void saveFilesLog(String fileName,String fileSize,String fileExtension) {
+        //TODO 每次都要解析，有没有办法简化这个环节？ 重复性动作，重复性代码考虑如何进行优化
         //解析token获取当前用户
         String token = request.getHeader("token");
         Claims claims = JwtUtils.parseJWT(token);

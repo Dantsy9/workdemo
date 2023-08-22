@@ -30,14 +30,19 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public  List<MenuDTO> getMenuTreeByUserId(UserMenu id) {
+    public  List<MenuDTO> getMenuTreeByUserId(//TODO 使用合适的数据类型
+                                               UserMenu id) {
         //获取用户user_id
         Long userId = id.getUserId();
+        //TODO
         Long[] menuId = userMenuMapper.getMenuIdByUserId(userId);
+        //TODO 这样写会有什么问题？
         if (menuId.length==0){
             return null;
         }
+        //TODO 常量怎么定义？
         Long menuIdSpecial = 0L;
+        //TODO 这个变量的作用？
         boolean isMenuIdSpecial = false;
         //遍历menu数组，查找menuId是否为0，是则展示全部菜单
         for(Long number : menuId){
@@ -48,7 +53,6 @@ public class MenuServiceImpl implements MenuService {
         }
         List<Menu> menus;
         if(isMenuIdSpecial){
-            //TODO 确认好需求后在决定要不要写，做好沟通
             menus = menuMapper.selectAll();
         }else{
             //通过menuId获取对应菜单
@@ -65,6 +69,7 @@ public class MenuServiceImpl implements MenuService {
      **/
     private List<MenuDTO> getMenuList(List<Menu> menus) {
         //使用orika复制工具将menus集合复制到menuDTOS集合中
+        //TODO 换一个方式
         MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
         List<MenuDTO> menuDTOS = mapperFactory.getMapperFacade().mapAsList(menus,MenuDTO.class);
         //存储根节点的菜单，即父级菜单
@@ -73,7 +78,6 @@ public class MenuServiceImpl implements MenuService {
         for (MenuDTO menuDTO1 : menuDTOS) {
             if(menuDTO1.getParentId().equals(0L)){
                 //找到根节点菜单的时候，寻找并设置这个根节点菜单下的子节点菜单。
-                //TODO 方法名和方法做的事情不一致
                 setChildMenu(menuDTO1, menuDTOS);
 //                menuDTO1.setChildrenList(childMenu);
                 //添加到根节点的列表中
@@ -89,7 +93,9 @@ public class MenuServiceImpl implements MenuService {
      * @param: 父菜单
      * @return: void
      **/
-    private void setChildMenu(MenuDTO menuDTO1,List<MenuDTO> menuDTOS){
+    private void setChildMenu(
+            //TODO 命名
+            MenuDTO menuDTO1,List<MenuDTO> menuDTOS){
         //存储根节点的菜单，即子级菜单
         List<MenuDTO> childrenMenu = new ArrayList<>();
         //遍历所有数据，找到是入参父节点的子节点的数据，然后加到childrenMenu集合中。
