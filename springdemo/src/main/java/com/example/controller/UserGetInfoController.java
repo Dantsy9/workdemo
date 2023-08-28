@@ -4,9 +4,9 @@ import com.example.domain.MenuDTO;
 import com.example.domain.UserMenu;
 import com.example.exception.DefinitionException;
 import com.example.exception.ErrorEnum;
+import com.example.service.LogStatsService;
 import com.example.utils.Result;
 import com.example.service.MenuService;
-import com.example.service.PermsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +28,6 @@ import java.util.List;
 @RestController
 public class UserGetInfoController {
 
-    @Resource
-    private PermsService permsService;
 
     @Resource
     private MenuService menuService;
@@ -40,7 +38,7 @@ public class UserGetInfoController {
      * @param: 用户ID
      * @return: 用户菜单信息
      **/
-    @PostMapping(value = "/getInfo")
+    @PostMapping(value = "/getMenu")
     public Result getInfo(@RequestBody UserMenu id) {
         log.info("用户菜单信息获取请求");
         List<MenuDTO> menuTreeByUserId = menuService.getMenuTreeByUserId(id);
@@ -48,9 +46,8 @@ public class UserGetInfoController {
             throw new DefinitionException(ErrorEnum.USER_PERMS_NOT_EXIST);
         }
         return Result.success(menuTreeByUserId);
-        //获取菜单列表
-//        List<Menu> menuList = menuService.selectMenuTreeByUserId(userId);
-//        return Result.success(menuList);
     }
+
+
 
 }

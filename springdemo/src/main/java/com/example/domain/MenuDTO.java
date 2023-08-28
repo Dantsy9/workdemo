@@ -13,9 +13,9 @@ import java.util.List;
  * @author zmc
  * @since 2023-08-07
  */
-//TODO 这个注解的作用？
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MenuDTO extends Menu{
+public class MenuDTO{
     //TODO
 
     //菜单ID
@@ -27,35 +27,16 @@ public class MenuDTO extends Menu{
     private Long parentId;
 
     //子菜单列表
-    @Getter
     private List<MenuDTO> childrenList;
 
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Override
-    public String getMenuName() {
-        return menuName;
-    }
-
-    @Override
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
 
-    @Override
-    public Long getParentId() {
-        return parentId;
-    }
-
-    @Override
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }

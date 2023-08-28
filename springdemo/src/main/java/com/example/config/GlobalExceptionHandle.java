@@ -38,10 +38,10 @@ public class GlobalExceptionHandle {
      * @param: 其他异常
      * @return: 错误信息和统一返回格式
      **/
-    @ExceptionHandler(Exception.class)
-    public Result servletExceptionHandle(Exception e){
-
-        return Result.error(ErrorEnum.INTERNAL_SERVER_ERROR);
-
-    }
+//    @ExceptionHandler(Exception.class)
+//    public Result servletExceptionHandle(Exception e){
+//
+//        return Result.error(ErrorEnum.INTERNAL_SERVER_ERROR);
+//
+//    }
 }

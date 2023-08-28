@@ -34,9 +34,6 @@ public class Calculator {
                 result = numberOne / numberTwo;
                 break;
                 //TODO 有这个需求吗
-            case '%':
-                result = numberOne % numberTwo;
-                break;
             default:
                 System.out.println("输入有误");
         }

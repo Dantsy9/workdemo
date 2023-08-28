@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.MenuMapper">
-    <!--  只提取需要的字段   -->
+    <!-- TODO 只提取需要的字段   -->
     <select id="selectAll" resultType="com.example.domain.Menu">
         select id,menu_name,parent_id
         from menu

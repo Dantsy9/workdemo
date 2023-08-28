@@ -1,10 +1,11 @@
-
-
 jasypt:
   encryptor:
     password: f5088fe56cb8447aa56fe7db9e3b2444 # salt 盐值，需要和加密时使用的 salt 一致
     algorithm: PBEWithMD5AndDES # 加密算法，需要和加密时使用的算法一致
     string-output-type: base64 # 密文格式，，需要和加密时使用的输出格式一致
+
+server:
+  port: 8080
 
 spring:
   datasource:
@@ -19,6 +20,14 @@ spring:
       max-file-size: 100MB
       max-request-size: 1000MB
       enabled: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
 
 #开启驼峰式命名规则自动转换
 mybatis:

@@ -37,7 +37,7 @@ public class FileServiceImpl implements FileService {
      * 上传
      * @date: 2023/8/21
      * @param: [image]
-     * @return: void //TODO 无返回吗
+     * @return: void
      **/
     @Override
     public void uploadFile(MultipartFile image) {
@@ -53,7 +53,6 @@ public class FileServiceImpl implements FileService {
         String newFileName = UUID.randomUUID() + extname;
         //上传文件
         try {
-            //TODO 路径使用配置文件读取的方式获取
             image.transferTo(new File("D:\\temp\\IdeaUpload\\"+newFileName));
             iFileslogService.saveFilesLog(newFileName,fileSize,extname);
         } catch (IOException e) {

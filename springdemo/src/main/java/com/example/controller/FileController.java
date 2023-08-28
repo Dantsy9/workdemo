@@ -45,9 +45,7 @@ public class FileController {
 
         return Result.success();
     }
-    //TODO
     @GetMapping("/download")
-    //TODO  返回对象没统一
     public ResponseEntity<Object> downloadFile(String fileName){
 
         ResponseEntity<Object> objectResponseEntity = fileService.downloadFile(fileName);

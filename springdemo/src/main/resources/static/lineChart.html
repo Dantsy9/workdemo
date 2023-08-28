@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>document</title>
+</head>
+<body>
+    <div id="lineChart" style="width: 1000px;height: 800px;"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+    <script>
+        const option = {
+            title: {
+                text: 'Stacked Line'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['Email']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: 'Email',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                }
+            ]
+        };
+        var chartDom = document.getElementById('lineChart');
+        var myChart = echarts.init(chartDom);
+        myChart.setOption(option);
+
+
+    </script>
+</body>
+</html>

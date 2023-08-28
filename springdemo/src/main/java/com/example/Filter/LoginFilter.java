@@ -42,7 +42,7 @@ public class LoginFilter implements Filter {
         try {
             JwtUtils.parseJWT(jwt);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage(),e);
             log.info("解析令牌失败，返回错误信息");
             Result error = Result.error("NOT_LOGIN");
             String notLogin =  JSONObject.toJSONString(error);//通过JSON这个方法将string转为json
