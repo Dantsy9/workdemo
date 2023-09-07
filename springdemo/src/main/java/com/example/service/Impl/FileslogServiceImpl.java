@@ -5,7 +5,7 @@ import com.example.domain.Fileslog;
 import com.example.mapper.FileslogMapper;
 import com.example.service.IFileslogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.utils.reqInfoUtils;
+import com.example.utils.ReqInfoUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,7 +36,7 @@ public class FileslogServiceImpl extends ServiceImpl<FileslogMapper, Fileslog> i
         //TODO 每次都要解析，有没有办法简化这个环节？ 重复性动作，重复性代码考虑如何进行优化
         Fileslog fileslog = new Fileslog();
         fileslog.setFileName(fileName);
-        fileslog.setOperator(reqInfoUtils.getOperator());
+        fileslog.setOperator(ReqInfoUtils.getOperator());
         fileslog.setOperationTime(LocalDateTime.now());
         fileslog.setFileSize(fileSize);
         fileslog.setFileExtension(fileExtension);

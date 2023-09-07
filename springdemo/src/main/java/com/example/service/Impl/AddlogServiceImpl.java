@@ -2,12 +2,9 @@ package com.example.service.Impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.Addlog;
-import com.example.domain.UserMenu;
 import com.example.mapper.AddlogMapper;
 import com.example.service.IAddlogService;
-import com.example.utils.JwtUtils;
-import com.example.utils.reqInfoUtils;
-import io.jsonwebtoken.Claims;
+import com.example.utils.ReqInfoUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 /**
  * <p>
@@ -44,7 +41,7 @@ public class AddlogServiceImpl extends ServiceImpl<AddlogMapper, Addlog> impleme
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveAddLog(String MethodObject, String method, String consequence) {
         Addlog addlog = new Addlog();
-        addlog.setOperator(reqInfoUtils.getOperator());
+        addlog.setOperator(ReqInfoUtils.getOperator());
         //获取当前时间
         addlog.setOperationTime(LocalDateTime.now());
         addlog.setMethod(method);

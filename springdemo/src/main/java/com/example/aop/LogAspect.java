@@ -3,9 +3,7 @@ package com.example.aop;
 import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Log;
 import com.example.mapper.LogMapper;
-import com.example.utils.JwtUtils;
-import com.example.utils.reqInfoUtils;
-import io.jsonwebtoken.Claims;
+import com.example.utils.ReqInfoUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -13,7 +11,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -37,7 +34,7 @@ public class LogAspect {
     public Object recordLog(ProceedingJoinPoint joinPoint) throws Throwable {
         //操作人id - userId
         //获取token，解析到username
-        String operator = reqInfoUtils.getOperator();
+        String operator = ReqInfoUtils.getOperator();
 
         //操作时间
         LocalDateTime operationTime = LocalDateTime.now();

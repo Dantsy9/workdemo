@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2023-09-05
  */
 
-public class reqInfoUtils {
+public class ReqInfoUtils {
     @Resource
     private static HttpServletRequest request;
     private static final String TOKEN = request.getHeader("token");
@@ -25,6 +25,5 @@ public class reqInfoUtils {
     @Getter
     public static String type = CLAIMS.get("type",String.class);
     @Getter
-    public static String id = CLAIMS.get("id",String.class);
-
+    public static int id = CLAIMS.get("id",Integer.class);
 }

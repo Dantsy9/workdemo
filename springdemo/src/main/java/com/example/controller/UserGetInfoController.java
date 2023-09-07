@@ -42,11 +42,7 @@ public class UserGetInfoController {
     @GetMapping(value = "/getMenu")
     public Result getInfo(Long id) {
         log.info("用户菜单信息获取请求");
-        List<MenuDTO> menuTreeByUserId = menuService.getMenuTreeByUserId(id);
-        if (menuTreeByUserId == null){
-            throw new DefinitionException(ErrorEnum.USER_PERMS_NOT_EXIST);
-        }
-        return Result.success(menuTreeByUserId);
+        return Result.success(menuService.getMenuTreeByUserId(id));
         //获取菜单列表
 //        List<Menu> menuList = menuService.selectMenuTreeByUserId(userId);
 //        return Result.success(menuList);

@@ -3,6 +3,8 @@ package com.example.service.Impl;
 
 import com.example.domain.MenuDTO;
 
+import com.example.exception.DefinitionException;
+import com.example.exception.ErrorEnum;
 import com.example.mapper.MenuMapper;
 
 import com.example.mapper.UserMenuMapper;
@@ -37,7 +39,7 @@ public class MenuServiceImpl implements MenuService {
         Long[] menuId = userMenuMapper.getMenuIdByUserId(id);
         //TODO 这样写会有什么问题？
         if (menuId.length==0){
-            return null;
+            throw new DefinitionException(ErrorEnum.USER_PERMS_NOT_EXIST);
         }
         //TODO 常量怎么定义？
         final Long menuIdSpecial = 0L;
