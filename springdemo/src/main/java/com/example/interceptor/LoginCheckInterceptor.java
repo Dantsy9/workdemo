@@ -37,7 +37,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             JwtUtils.parseJWT(jwt);
             // 本地调试结束后，所有system.out代码要删掉
         } catch (Exception e) {
-            log.error(e.getMessage(),e);
+            e.printStackTrace();
             log.info("解析令牌失败，返回错误信息");
             Result error = Result.error("NOT_LOGIN");
             String notLogin =  JSONObject.toJSONString(error);//通过JSON这个方法将json转为String

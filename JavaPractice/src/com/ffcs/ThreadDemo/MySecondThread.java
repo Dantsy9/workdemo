@@ -17,18 +17,17 @@ public class MySecondThread extends Thread {
     }
 
     public void run() {
-        System.out.println(getName() + " start");
-        while (running) {
+        Object ob = new Object();
+        synchronized (ob){
+            System.out.println(getName() + " start");
             try {
-                    Thread.sleep(500L);
-                }
-            catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                System.out.println(getName() + " wait");
+                ob.wait();
+            } catch (InterruptedException ignored) {
             }
-            System.out.println(getName() + " running");
         }
-
     }
+
 
     /**
      * 关闭线程二的循环

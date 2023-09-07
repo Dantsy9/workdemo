@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Log;
 import com.example.mapper.LogMapper;
 import com.example.utils.JwtUtils;
+import com.example.utils.reqInfoUtils;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -30,18 +31,13 @@ import java.util.Arrays;
 public class LogAspect {
 
     @Resource
-    private HttpServletRequest request;
-
-    @Resource
     private LogMapper logMapper;
 
     @Around("@annotation(com.example.annn.Log)")
     public Object recordLog(ProceedingJoinPoint joinPoint) throws Throwable {
         //操作人id - userId
         //获取token，解析到username
-        String token = request.getHeader("token");
-        Claims claims = JwtUtils.parseJWT(token);
-        String operator = (String) claims.get("username");
+        String operator = reqInfoUtils.getOperator();
 
         //操作时间
         LocalDateTime operationTime = LocalDateTime.now();

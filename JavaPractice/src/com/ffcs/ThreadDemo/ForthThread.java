@@ -16,6 +16,7 @@ public class ForthThread extends Thread{
     public void run(){
         System.out.println(getName() + " start");
         long timeSleep = 500L;
+        MySecondThread t2 = new MySecondThread();
         while (counter < 10) {
             try {
                 Thread.sleep(timeSleep);
@@ -26,14 +27,13 @@ public class ForthThread extends Thread{
             System.out.println(getName() + "--->" + counter);
             //计数器到达5，启动线程二
             if (counter == 5){
-                MySecondThread t2 = new MySecondThread();
                 t2.setName("Second Thread");
                 //TODO 线程二中若是不用死循环，怎么实现
                 t2.start();
             }
         }
         //循环结束，退出线程一同时关闭线程二
-        MySecondThread.stopThread();
+        t2.interrupt();
     }
 
 

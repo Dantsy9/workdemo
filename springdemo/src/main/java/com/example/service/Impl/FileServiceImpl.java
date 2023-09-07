@@ -1,11 +1,12 @@
 package com.example.service.Impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.domain.Fileslog;
-import com.example.mapper.FileslogMapper;
+
+import com.example.exception.DefinitionException;
+import com.example.exception.ErrorEnum;
 import com.example.service.FileService;
 import com.example.service.IFileslogService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.*;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -28,19 +28,25 @@ import java.util.UUID;
  * @since 2023-08-18
  */
 @Service
+@Slf4j
 public class FileServiceImpl implements FileService {
 
     @Resource
     private IFileslogService iFileslogService;
 
+    //注入配置的路径
+
+    @Value("${spring.servlet.multipart.location}")
+    private String fileSavePath;
+
     /**
      * 上传
      * @date: 2023/8/21
-     * @param: [image]
-     * @return: void
+     * @param: 文件
+     * @return: void //TODO 无返回吗
      **/
     @Override
-    public void uploadFile(MultipartFile image) {
+    public boolean uploadFile(MultipartFile image) {
         //获得文件原始名称
         String originalFilename = image.getOriginalFilename();
         //获取文件的扩展名
@@ -53,10 +59,13 @@ public class FileServiceImpl implements FileService {
         String newFileName = UUID.randomUUID() + extname;
         //上传文件
         try {
-            image.transferTo(new File("D:\\temp\\IdeaUpload\\"+newFileName));
+            //TODO 路径使用配置文件读取的方式获取
+            image.transferTo(new File(fileSavePath+newFileName));
             iFileslogService.saveFilesLog(newFileName,fileSize,extname);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            return true;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new DefinitionException(ErrorEnum.FILE_NOT_SAVE);
         }
 
     }

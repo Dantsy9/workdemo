@@ -3,17 +3,13 @@ package com.example.controller;
 import com.example.service.FileService;
 import com.example.utils.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.annotation.Resource;
-import java.io.File;
-import java.util.UUID;
 
 /**
  * <p>
@@ -45,13 +41,17 @@ public class FileController {
 
         return Result.success();
     }
+    //TODO
+    /**
+     * 文件下载
+     * @date: 2023/8/28
+     * @param: 文件名称
+     * @return: 请求体
+     **/
     @GetMapping("/download")
-    public ResponseEntity<Object> downloadFile(String fileName){
-
-        ResponseEntity<Object> objectResponseEntity = fileService.downloadFile(fileName);
-
-        return objectResponseEntity;
+    //TODO  返回对象没统一
+    public ResponseEntity<Object>  downloadFile(String fileName){
+        ResponseEntity<Object> response = fileService.downloadFile(fileName);
+        return response;
     }
-
-
 }

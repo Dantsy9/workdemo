@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
@@ -13,8 +14,8 @@ import java.util.List;
  * @author zmc
  * @since 2023-08-07
  */
-@Getter
-@JsonInclude(JsonInclude.Include.NON_NULL)
+//TODO 这个注解的作用？
+
 public class MenuDTO{
     //TODO
 
@@ -27,18 +28,36 @@ public class MenuDTO{
     private Long parentId;
 
     //子菜单列表
+    @Getter
     private List<MenuDTO> childrenList;
+
+
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMenuName() {
+        return menuName;
     }
 
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
 
+    public Long getParentId() {
+        return parentId;
+    }
+
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public List<MenuDTO> getChildrenList() {
+        return childrenList;
     }
 
     public void setChildrenList(List<MenuDTO> childrenList) {

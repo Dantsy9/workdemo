@@ -5,12 +5,10 @@ import com.example.domain.Fileslog;
 import com.example.mapper.FileslogMapper;
 import com.example.service.IFileslogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.utils.JwtUtils;
-import io.jsonwebtoken.Claims;
+import com.example.utils.reqInfoUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
 /**
@@ -25,9 +23,6 @@ import java.time.LocalDateTime;
 public class FileslogServiceImpl extends ServiceImpl<FileslogMapper, Fileslog> implements IFileslogService {
 
     @Resource
-    private HttpServletRequest request;
-
-    @Resource
     private FileslogMapper fileslogMapper;
 
     /**
@@ -38,13 +33,10 @@ public class FileslogServiceImpl extends ServiceImpl<FileslogMapper, Fileslog> i
      **/
     @Override
     public void saveFilesLog(String fileName,String fileSize,String fileExtension) {
-        //解析token获取当前用户
-        String token = request.getHeader("token");
-        Claims claims = JwtUtils.parseJWT(token);
-        String operator = claims.get("username",String.class);
+        //TODO 每次都要解析，有没有办法简化这个环节？ 重复性动作，重复性代码考虑如何进行优化
         Fileslog fileslog = new Fileslog();
         fileslog.setFileName(fileName);
-        fileslog.setOperator(operator);
+        fileslog.setOperator(reqInfoUtils.getOperator());
         fileslog.setOperationTime(LocalDateTime.now());
         fileslog.setFileSize(fileSize);
         fileslog.setFileExtension(fileExtension);

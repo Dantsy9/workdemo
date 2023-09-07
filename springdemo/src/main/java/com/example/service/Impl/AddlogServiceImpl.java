@@ -6,6 +6,7 @@ import com.example.domain.UserMenu;
 import com.example.mapper.AddlogMapper;
 import com.example.service.IAddlogService;
 import com.example.utils.JwtUtils;
+import com.example.utils.reqInfoUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -39,17 +40,11 @@ public class AddlogServiceImpl extends ServiceImpl<AddlogMapper, Addlog> impleme
      * @param: addPerms请求的list数组对象用户角色关联表，方法名，执行结果　
      * @return:
      **/
-    //TODO 日志记录作为一个通用方法，参数不应该跟具体业务进行有关联（userMenu）
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveAddLog(String MethodObject, String method, String consequence) {
-        //解析token获取当前用户
-        String token = request.getHeader("token");
-        Claims claims = JwtUtils.parseJWT(token);
-        //TODO　强转
-        String operator = claims.get("username",String.class);
         Addlog addlog = new Addlog();
-        addlog.setOperator(operator);
+        addlog.setOperator(reqInfoUtils.getOperator());
         //获取当前时间
         addlog.setOperationTime(LocalDateTime.now());
         addlog.setMethod(method);

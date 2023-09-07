@@ -21,7 +21,7 @@ public interface FileService {
      * @param:
      * @return:
      **/
-    void uploadFile(MultipartFile image);
+    boolean uploadFile(MultipartFile image);
 
     /**
      * 文件下载

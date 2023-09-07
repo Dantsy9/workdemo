@@ -36,7 +36,7 @@ public class LogStatsServiceImpl implements LogStatsService {
         //获得方法名字符串集合
         List<String> methodName = addlogMapper.selectMethod();
         addlogDTO.setMethodNameList(methodName);
-        //自动补全日期
+        //自动补全的日期集合
         List<String> dateHandles = dateHandle();
         addlogDTO.setDateList(dateHandles);
         //遍历获得全部方法在对应日期的调用次数总集合
@@ -76,7 +76,7 @@ public class LogStatsServiceImpl implements LogStatsService {
      *
      * @date: 2023/8/24
      * @param: 补全的时间集合，所有的方法调用次数和对应的日期集合
-     * @return: 补全所有日期的方法调用次数集合，即次数为0的日期补全
+     * @return: 补全所有日期的方法调用次数集合，即补全存在日期内方法调用次数为0
      **/
     private List<Integer> methodFrequencyHandle(List<String> dateHandles, List<AddlogDTO> methodAndOperationTimeByMethod){
         //判断数据是否存在标志
@@ -118,13 +118,13 @@ public class LogStatsServiceImpl implements LogStatsService {
             dbDateExist = false;
         }
         //最后的结果处理
-        ArrayList<Integer> oneMethodName = new ArrayList<>();
+        ArrayList<Integer> oneTimesMethod = new ArrayList<>();
         //遍历结果集合，取出日期对应次数并放入数组
         for (Map<String, Object> objectMap : result){
             int countMethodByTime = Integer.parseInt((objectMap.get("countMethodByTime")).toString());
-            oneMethodName.add(countMethodByTime);
+            oneTimesMethod.add(countMethodByTime);
         }
-        return oneMethodName;
+        return oneTimesMethod;
     }
 }
 

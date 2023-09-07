@@ -21,7 +21,7 @@ public interface MenuService {
      * @param: user_id
      * @return: 菜单树
      **/
-    List<MenuDTO> getMenuTreeByUserId(UserMenu id);
+    List<MenuDTO> getMenuTreeByUserId(Long id);
 
 
 

@@ -1,16 +1,17 @@
 package com.example.mapper;
 
 import com.example.domain.Menu;
-import org.apache.ibatis.annotations.Mapper;
+import com.example.domain.MenuDTO;
+
 
 import java.util.List;
 
 
 public interface MenuMapper {
     //展示全部菜单
-    List<Menu> selectAll();
+    List<MenuDTO> selectAll();
     //按照menuId展示
-    List<Menu> selectMenuByMenuId(Long[] menuId);
+    List<MenuDTO> selectMenuByMenuId(Long[] menuId);
 
-    List<Menu> selectMenuNameByMenuId(Long[] menuId);
+    List<MenuDTO> selectMenuNameByMenuId(Long[] menuId);
 }
