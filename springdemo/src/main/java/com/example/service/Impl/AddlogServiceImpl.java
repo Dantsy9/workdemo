@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.Addlog;
 import com.example.mapper.AddlogMapper;
 import com.example.service.IAddlogService;
-import com.example.utils.ReqInfoUtils;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +41,7 @@ public class AddlogServiceImpl extends ServiceImpl<AddlogMapper, Addlog> impleme
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveAddLog(String MethodObject, String method, String consequence) {
         Addlog addlog = new Addlog();
-        addlog.setOperator(ReqInfoUtils.getOperator());
+
         //获取当前时间
         addlog.setOperationTime(LocalDateTime.now());
         addlog.setMethod(method);

@@ -3,7 +3,6 @@ package com.example.aop;
 import com.alibaba.fastjson.JSONObject;
 import com.example.domain.Log;
 import com.example.mapper.LogMapper;
-import com.example.utils.ReqInfoUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -32,9 +31,6 @@ public class LogAspect {
 
     @Around("@annotation(com.example.annn.Log)")
     public Object recordLog(ProceedingJoinPoint joinPoint) throws Throwable {
-        //操作人id - userId
-        //获取token，解析到username
-        String operator = ReqInfoUtils.getOperator();
 
         //操作时间
         LocalDateTime operationTime = LocalDateTime.now();
@@ -55,7 +51,7 @@ public class LogAspect {
 
         //记录操作日志，调用insertInfo
         Log logs = new Log();
-        logs.setOperator(operator);
+
         logs.setOperationTime(operationTime);
         logs.setMethod(methodName);
         logs.setObject(object);
